@@ -12,7 +12,7 @@ users = ["blue", "yellow"]
 @app.route('/')
 def index():
     # You are logged in as yellow!
-    session = {'username': users[1]}
+    session['username'] = users[1]
 
     if "username" in session and session["username"] in users:
         return render_template('index.html', session=session)
@@ -28,8 +28,8 @@ if __name__ == '__main__':
 
 r'''
 >>> flask-unsign --sign --cookie "{'logged_in': True}" --secret 'CHANGEME'
-eyJsb2dnZWRfaW4iOnRydWV9.ZS6bkA.kcqX2EloNzojpudt8OVjYi0NGi8
+eyJsb2dnZWRfaW4iOnRydWV9.ZS-j-A.XSxI2WacdeUIUzh4KWBYdVGZTOc
 
->>> flask-unsign --decode --cookie 'eyJsb2dnZWRfaW4iOnRydWV9.ZS6bkA.kcqX2EloNzojpudt8OVjYi0NGi8'
+>>> flask-unsign --decode --cookie 'eyJsb2dnZWRfaW4iOnRydWV9.ZS-j-A.XSxI2WacdeUIUzh4KWBYdVGZTOc'
 {'logged_in': True}
 '''
